@@ -1,11 +1,14 @@
 const express = require("express");
 const hbs=require('hbs')
+const path=require('path')
 const geocode=require('./utils/geocode.js')
 const weather=require('./utils/weather.js')
 const app = express();
+const publicDirectoryPath = path.join(__dirname, '../public')
 
 
 app.set('view engine','hbs')
+app.use(express.static(publicDirectoryPath))
 
 app.get("/", (req,res)=>{
     res.render('index',{
